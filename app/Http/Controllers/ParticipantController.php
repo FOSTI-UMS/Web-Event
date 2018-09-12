@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon; 
 use App\Models\Event;
+use App\Mail\ConfirmMail;
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ParticipantController extends Controller
 {
@@ -68,6 +70,18 @@ class ParticipantController extends Controller
           // Passing data
           // view()->share('data',$data);
           view()->share(['dataParti' => $dataParti, 'qrstring' => $qrstring]);
+
+        Mail::send('mails/mail', ['dataParti' => $dataParti], function ($message) use ($request)
+        {
+
+            // $message->from('me@gmail.com', 'Christian Nwamba');
+
+            $message->to($request->email);
+
+            //Add a subject
+            $message->subject("Konfirmasi Pendaftaran ".$request->acara);
+
+        });
 
 
           return redirect()->back()->with('message', 'Silahkan cek e-mail anda..');

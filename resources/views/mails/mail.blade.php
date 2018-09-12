@@ -29,11 +29,7 @@
         <span><strong>Acara: &nbsp; </strong>{{$dataParti->event}}</span>
         <br>
         <br>
-        <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($qrstring))!!} ">
-        <strong>
-            <span style="padding-left:5em">Terima kasih sudah melakukan registrasi</span> <br><br><br>
-            <center><span style="font-size: 20px;">Silahkan cetak kartu Open Recuirement yang tercantum untuk di bawa pada saat hari pelaksanaan Open Recuirement</span></center>
-        </strong>
+        <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($qrstring))!!} ">
     </div>
 </body>
 
