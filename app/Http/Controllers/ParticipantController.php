@@ -45,6 +45,31 @@ class ParticipantController extends Controller
     }
     public function postRegister(Request $request)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'email' => 'required|email',
+            'hp' => 'required',
+            'acara' => '',
+          ]);
 
+          if (Participant::where('email', $request->email)->where('event', $request->acara)->first() != null) {
+            return redirect()->back()->with('sudahdaftar', 'Anda sudah mendaftar, silahkan cek email anda atau kontak fostiums@gmail.com');
+          }
+
+          $dataParti = Participant::create([
+              'nama' => $request->nama,
+              'email' => $request->email,
+              'hp' => $request->hp,
+              'event' => $request->acara,
+          ]);
+
+          // Create qr
+          $qrstring = base64_encode($request->nama.'/'.$request->email.'/'.$request->hp.'/'.$request->event);
+          // Passing data
+          // view()->share('data',$data);
+          view()->share(['dataParti' => $dataParti, 'qrstring' => $qrstring]);
+
+
+          return redirect()->back()->with('message', 'Silahkan cek e-mail anda..');
     }
 }

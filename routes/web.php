@@ -19,14 +19,17 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+
+// Participant register
 Route::group(['prefix' => 'event'], function(){
     Route::get('/', 'ParticipantController@events');
     Route::get('/{slug}/{id}', 'ParticipantController@registerEvent');
     Route::post('/{slug}/{id}', 'ParticipantController@postRegister');
 });
 
-Route::group(['middleware' => 'auth'], function(){
+// Event creator
+Route::group(['prefix' => 'admin'], function(){
     Route::get('data/daftar', 'EventController@daftarEvent')->name('daftarEvent');
-    Route::resource('data', 'EventController');    
+    Route::resource('data', 'EventController');
 });
   

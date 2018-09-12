@@ -9,17 +9,35 @@
 <body>
     <h1>pendaftaran event</h1>
     <hr>
-    <form action="/event/{{ $reg->slug }}" method="post">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    <br /> 
+    @endif
+    @if (session()->has('sudahdaftar'))
+    <div class="alert alert-danger" role="alert">
+      {{ session()->get('sudahdaftar') }}
+    </div>
+    @endif
+    @if (session()->has('message'))
+    <div class="alert alert-danger" role="alert">
+      {{ session()->get('message') }}
+    </div>
+    @endif
+    <form action="/event/{{ $reg->slug }}/{{ $reg->id }}" method="post">
             <label for="nama">Nama</label>
             <input type="text" name="nama" id=""> <br>
             <label for="email">Email</label>
-            <input type="text" name="email" id=""> <br>
+            <input type="email" name="email" id=""> <br>
             <label for="hp">hp</label>
             <input type="text" name="hp" id=""> <br>
-            <label for="asal">Asal</label>
-            <input type="text" name="asal" id=""> <br>
             <label for="acara">Acara</label>
-            <input type="text" name="acara" value="{{ $reg->nama_event }}" disabled id=""> <br>
+            <input type="text" name="acara" value="{{ $reg->nama_event }}" readonly id=""> <br>
             <input type="submit" value="daftar">
             @csrf
     </form>
