@@ -24,12 +24,7 @@
       {{ session()->get('sudahdaftar') }}
     </div>
     @endif
-    @if (session()->has('message'))
-    <div class="alert alert-danger" role="alert">
-      {{ session()->get('message') }}
-    </div>
-    @endif
-    <form action="/event/{{ $reg->slug }}/{{ $reg->id }}" method="post">
+    <form action="/{{ $reg->slug }}/{{ $reg->id }}/done" method="post">
             <label for="nama">Nama</label>
             <input type="text" name="nama" id=""> <br>
             <label for="email">Email</label>
@@ -38,6 +33,8 @@
             <input type="text" name="hp" id=""> <br>
             <label for="acara">Acara</label>
             <input type="text" name="acara" value="{{ $reg->nama_event }}" readonly id=""> <br>
+              {!! NoCaptcha::renderJs() !!}
+              {!! NoCaptcha::display() !!}
             <input type="submit" value="daftar">
             @csrf
     </form>

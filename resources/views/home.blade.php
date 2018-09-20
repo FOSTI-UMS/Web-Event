@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <ul>
+                        <li><a href="/omah/daftar">Daftar</a></li>
+                        <li><a href="/omah/create">Buat</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -28,8 +28,10 @@
         <span><strong>HP: &nbsp; </strong>{{$dataParti->hp}}</span>
         <span><strong>Acara: &nbsp; </strong>{{$dataParti->event}}</span>
         <br>
+        <strong>Silahkan tunjukan pesan ini di lokasi <u>{{$dataParti->event}}</u></strong>
         <br>
-        <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($qrstring))!!} ">
+        {{-- <!--<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($qrstring))!!} ">--> --}}
+        <img src="{!!$message->embedData(QrCode::format('png')->size(200)->generate($qrstring), 'QrCode.png', 'image/png')!!}">
     </div>
 </body>
 

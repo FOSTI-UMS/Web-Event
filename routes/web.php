@@ -16,20 +16,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Event creator
+Route::get('omah/daftar', 'EventController@daftarEvent')->name('daftarEvent');
+Route::resource('omah', 'EventController');
 
-// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/omah', 'HomeController@index')->name('home');
+
 
 
 // Participant register
-Route::group(['prefix' => 'event'], function(){
-    Route::get('/', 'ParticipantController@events');
-    Route::get('/{slug}/{id}', 'ParticipantController@registerEvent');
-    Route::post('/{slug}/{id}', 'ParticipantController@postRegister');
-});
+Route::get('/', 'ParticipantController@events');
+Route::get('/{slug}/{id}', 'ParticipantController@registerEvent');
+Route::post('/{slug}/{id}/done', 'ParticipantController@postRegister');
 
-// Event creator
-Route::group(['prefix' => 'admin'], function(){
-    Route::get('data/daftar', 'EventController@daftarEvent')->name('daftarEvent');
-    Route::resource('data', 'EventController');
-});
   

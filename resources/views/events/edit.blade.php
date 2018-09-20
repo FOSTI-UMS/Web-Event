@@ -43,25 +43,22 @@
     @endif
 
     <div class="col-md-5">
-        <form action="/omah" method="post" enctype="multipart/form-data">
+        <form action="/data" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="namaevent">Nama event</label>
-                <input type="text" class="form-control" id="namaevent" aria-describedby="emailHelp" placeholder="namaevent" name="namaevent">
+                <label for="namaevent">Nama</label>
+                <input type="text" class="form-control" id="namaevent" aria-describedby="emailHelp" placeholder="namaevent" name="namaevent" value="{{ (old('namaevent')) ? old('namaevent') : $data->nama_event }}">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
                 <label for="max">Max</label>
-                <input type="number" name="max" class="form-control" id="" placeholder="max">
-            </div>
-            <div class="form-group">
-                <label for="namaevent">tempat event</label>
-                <input type="text" class="form-control" id="tempat" aria-describedby="emailHelp" placeholder="tempat" name="tempat">
+                <input type="number" name="max" class="form-control" id="" placeholder="max" value="{{ (old('max')) ? old('max') : $data->max_partic }}">
             </div>
             <div class="form-group">
                 <label for="tanggal">Tanggal/Waktu</label>
                 <div class="container">
                     <div class="row">
                         <div class='col-sm-6'>
+                            <span>{{ $data->waktu }}</span>
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker1'>
                                     <input type='text' name='tgl' class="form-control" />
@@ -81,11 +78,11 @@
             </div>
             <div class="form-group">
                 <label for="pamfelt">Pamflet</label>
-                <input type="file" name="pamflet" class="form-control-file">
+                <input type="file" name="pamflet" class="form-control-file" value="/images/pamflet/{{ (old('pamflet')) ? old('pamflet') : $data->pamflet }}">
             </div>
             <div class="form-group">
                 <label for="deskripsi">Deskripsi event</label>
-                <textarea name="deskripsi" class="form-control" id="" cols="30" rows="10"></textarea>
+                <textarea name="deskripsi" class="form-control" id="" cols="30" rows="10">{{ (old('deskripsi')) ? old('deskripsi') : $data->deskripsi }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             @csrf

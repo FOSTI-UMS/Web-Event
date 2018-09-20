@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Kadaluarsa</h1>
-</body>
-</html>
+<!doctype html>
+<title>Full</title>
+<link rel="shortcut icon" type="image/png" href="http://fosti.ums.ac.id/img/favicon.ico"/>
+<style>
+  body { text-align: center; padding: 150px; }
+  h1 { font-size: 50px; }
+  body { font: 20px Helvetica, sans-serif; color: #333; }
+  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
+  a { color: #dc8100; text-decoration: none; }
+  a:hover { color: #333; text-decoration: none; }
+</style>
+
+<article>
+    <h1>Too late :D</h1>
+    <div>
+        <p>You just too late, bruhh :D. Find <a href="/">another event</a> :)</p>
+        <p>&mdash; Fosti</p>
+    </div>
+</article>

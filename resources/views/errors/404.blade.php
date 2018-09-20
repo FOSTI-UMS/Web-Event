@@ -1,5 +1,5 @@
 <!doctype html>
-<title>Full</title>
+<title>404</title>
 <link rel="shortcut icon" type="image/png" href="http://fosti.ums.ac.id/img/favicon.ico"/>
 <style>
   body { text-align: center; padding: 150px; }
@@ -11,9 +11,9 @@
 </style>
 
 <article>
-    <h1>We&rsquo;re sorry :(</h1>
+    <h1>Page not found!</h1>
     <div>
-        <p>Sorry. The seats have been full. Find <a href="/">another event</a> :)</p>
+        <p>You&rsquo;re in the wrong direction, bruhh. Just go <a href="/">back</a></p>
         <p>&mdash; Fosti</p>
     </div>
 </article>

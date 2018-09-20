@@ -1,0 +1,41 @@
+.new {
+    background-color:#E91E63;
+}
+
+#background-1 {
+    background: url("../images/background/bg.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 350px;
+    
+}
+.header h1 {
+    margin-top: 150px;
+    font-size: 50px;
+    color: #fff;
+    margin-bottom: -10px;
+    font-weight: bold;
+}
+.header p {
+    font-size: 15px;
+}
+.register .container {
+    width: 95%;
+}
+.recent-event {
+
+}
+.recent-event h4 {
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: -13px;
+}
+
+@media only screen and (max-width: 900px) {
+   .recent-event h4 {
+        margin-top: 10px;
+        font-size: 15px;
+        margin-left: -13px;
+    }
+}

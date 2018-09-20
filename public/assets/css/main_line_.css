@@ -1,0 +1,278 @@
+/*==================================
+---[ oQuran.com Template Design ]---
+Version : 1.0
+Credit  : 
+    - Anas Setiawan
+    - Bintang Citra Kusumaatmaja
+Table of contents :
+[1] Configuration Theme
+[2] Welcome ( Index ) Page
+[3] Single Page
+[4] Multiplayer Page
+====================================*/
+.tracker {
+    height: 12px;
+    left: 0px;
+    width: 100%;
+    background: #000;
+    border-radius: 100px;
+    margin: 20px 0px;
+    position: relative;
+    border: 0px;
+}
+
+.ui-slider-handle {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    width: 25px;
+    z-index: 2;
+    background: #e73b3b;
+    display: block;
+    border-radius: 100px;
+    height: 25px;
+    margin: -6px -10px;
+}
+
+
+.ui-slider-range {
+    background: #dbdbdb;
+    height: 12px;
+    position: absolute;
+    bottom: 0;
+    border-radius: 100px;
+    left: -2px;
+    right: -2px;
+    border: 0px;
+}
+
+
+/*==================================
+[1] Configuration Theme
+====================================*/
+html {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+}
+
+.line {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+
+}
+
+.main {
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.background { /*No background*/
+    background-color: #000000;
+    background-image:url('../images/background/2.jpg');
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 110%;
+    height: 120vh;
+}
+
+.clear {
+    margin-top: 60px;
+}
+
+.qori .container { /*qori's container */
+    width: 83%;
+}
+
+nav {
+}
+
+/*nav.modified {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8125em;
+    text-transform: uppercase;
+}
+nav a {
+    color: #00ff1d;
+}
+nav a:hover {
+    background:none;
+    color: #eee;
+}
+nav.nav-center ul {
+    text-align: center;
+}
+nav.nav-center ul li {
+    display: inline;
+    float: none;
+}
+nav.nav-center ul li a {
+    display: inline-block;
+}*/
+
+/*==================================
+[1] Configuration Theme - Filter Options
+23 Beautyfull effect for baackground
+====================================*/
+.filter-blur {
+    -webkit-filter: blur(15px);
+}
+.filter-grey {
+    -webkit-filter: grayscale(75%);
+}
+.filter-lomo {
+    -webkit-filter: saturate(1.5) contrast(1.5) hue-rotate(-15deg);
+}
+
+
+/*==================================
+[2] Welcome Page 
+====================================*/
+.welcome {
+    margin-top: 150px;
+}
+
+.welcome h4 {
+    color: #00ff1d;
+    letter-spacing: -3px;
+    font-size: 60px;
+    font-weight: 200;
+    margin-bottom: 0;
+}
+
+.welcome p {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 0;
+    color: #aaa;
+    font-size: 19px;
+}
+/*==================================
+[3] Single Page 
+====================================*/
+.card-action i {
+    font-size: 35px;
+}
+
+#seek-bar {
+    margin-top: 15px;
+    height: 5px;
+    background-color:gray;
+    display: flex;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#fill{
+    height: 5px;
+    background-color:royalblue;
+    border-radius: 20px;
+}
+
+#handle{
+    width: 8px;
+    height: 8px;
+    background-color:royalblue;
+    border-radius: 50%;
+    margin-left: -5px;
+    transform: scale(2);
+}
+/*==================================
+[3] Multiplayer Page { qori's }
+====================================*/
+
+.qori .btn-warper button {
+    opacity: 0.7;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.qori .btn-warper button:hover {
+    opacity: 1;
+    background-color: black;
+    width: 100%;
+}
+
+.qori .page-header {
+}
+.qori .page-header h5 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 29px;
+    font-size: 2.9rem;
+    font-weight: 400;
+    letter-spacing: 5px;
+    margin: 0;
+    padding: 0.55172414em 0;
+}
+.qori .qori-title {
+    margin-top: -10px;
+}
+.qori .qori-title h5 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0;
+    padding: 0.48275862em 0;
+
+}
+
+.qori .release  {
+    color: #f2f2ed;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+.qori .surah {
+    margin-bottom: 10px;
+    color: #fff;
+    cursor: pointer;
+
+}
+.qori .surah-wraper {
+    opacity: 0.5;
+}
+
+.qori .surah-wraper:hover {
+    opacity: 1;
+    z-index: 0;
+
+}
+.qori .controll {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.active::after {
+    content: "Now Playing...";
+    opacity: 1;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.qori .footer h5 {
+    color: #fff;
+}
+
+.qori .footer p, ul {
+    color: #fff;
+    opacity: 0.5;
+
+}

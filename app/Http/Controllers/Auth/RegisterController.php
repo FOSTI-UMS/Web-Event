@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/omah';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,17 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    // Untuk menghapus fungsi register
+    public function showRegistrationForm()
+    {
+        return redirect('login');
+    }
+
+    public function register(Request $request)
+    {
+
+    }
+    // Untuk menghapus fungsi register
 
     /**
      * Get a validator for an incoming registration request.

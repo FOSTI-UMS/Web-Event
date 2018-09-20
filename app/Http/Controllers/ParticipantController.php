@@ -13,15 +13,15 @@ class ParticipantController extends Controller
 {
     public function events()
     {
-        $events = Event::orderBy('waktu','desc')->paginate(5);
+        $events = Event::orderBy('waktu','desc')->paginate(6);
 
-        return view('participant.acara', compact('events'));
+        return view('participant.index', compact('events'));
     }
 
     public function registerEvent($slug, $id)
     {
         $reg = Event::where('slug', $slug)->first();
-
+        $recents = Event::orderBy('waktu', 'desc')->take(3)->get();
         // Cek if page exist
         if(empty($reg)) abort(404);
 
@@ -43,7 +43,7 @@ class ParticipantController extends Controller
             //stil to go 
         }
 
-        return view('participant.register', compact('reg'));
+        return view('participant.registerparti', compact('reg', 'recents'));
     }
     public function postRegister(Request $request)
     {
@@ -52,11 +52,13 @@ class ParticipantController extends Controller
             'email' => 'required|email',
             'hp' => 'required',
             'acara' => '',
+            'g-recaptcha-response' => 'required|captcha'
           ]);
 
           if (Participant::where('email', $request->email)->where('event', $request->acara)->first() != null) {
             return redirect()->back()->with('sudahdaftar', 'Anda sudah mendaftar, silahkan cek email anda atau kontak fostiums@gmail.com');
           }
+          $recents = Event::orderBy('waktu', 'desc')->take(3)->get();
 
           $dataParti = Participant::create([
               'nama' => $request->nama,
@@ -65,8 +67,8 @@ class ParticipantController extends Controller
               'event' => $request->acara,
           ]);
 
-          // Create qr
-          $qrstring = base64_encode($request->nama.'/'.$request->email.'/'.$request->hp.'/'.$request->event);
+        //   Create qr
+          $qrstring = base64_encode($dataParti->id.'/'.$request->nama.'/'.$request->email.'/'.$request->event);
           // Passing data
           // view()->share('data',$data);
           view()->share(['dataParti' => $dataParti, 'qrstring' => $qrstring]);
@@ -84,6 +86,8 @@ class ParticipantController extends Controller
         });
 
 
-          return redirect()->back()->with('message', 'Silahkan cek e-mail anda..');
+        //   return view('parti')->back()->with('message', 'Silahkan cek e-mail anda..');
+          return view('participant.berhasil', compact('dataParti', 'recents'));
     }
+    
 }

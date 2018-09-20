@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('nama_event');
             $table->integer('max_partic');
             $table->dateTime('waktu');
+            $table->string('tempat');
             $table->string('pamflet');
             $table->text('deskripsi');
             $table->string('slug');
