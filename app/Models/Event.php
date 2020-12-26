@@ -10,8 +10,12 @@ class Event extends Model
         'nama_event',
         'max_partic',
         'waktu',
+        'tempat',
         'pamflet',
         'deskripsi',
-        'slug'
+        'htm',
+        'cp',
+        'slug',
+        'views'
     ];
 }

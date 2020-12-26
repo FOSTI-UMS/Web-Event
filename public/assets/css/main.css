@@ -3,7 +3,7 @@
 }
 
 #background-1 {
-    background: url("../images/background/bg.png");
+    background: url("../images/bg.png");
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -32,10 +32,56 @@
     margin-left: -13px;
 }
 
+.fixed {
+    position: fixed;
+    z-index: 100;
+}
+.title {
+	font-weight: bold;
+}
+
+/* Side Navigation ============================ */
+.sidenav {
+  background-color: #111;
+  transition: 0.5s;
+  padding-top: 20px;
+}
+nav .sidenav-trigger {
+    margin: 0;
+}
+.sidenav li > a {
+  font-size: 25px;
+  transition: 0.3s;
+   color: #fff;
+}
+.sidenav li:hover {
+  color: #fff !important;
+  background-color: #388E3C;
+}
+.sidenav ul {
+    list-style: none;
+    padding: 0;
+}
+
 @media only screen and (max-width: 900px) {
    .recent-event h4 {
         margin-top: 10px;
         font-size: 15px;
         margin-left: -13px;
     }
+}
+@media screen and (max-width: 725px){
+    .mobile {
+        display: inline !important;
+    }
+}
+
+.full {
+    width: 100%;
+}
+@media screen and (max-width: 550px){
+.notfound {
+    width: 100%;
+    margin-top: 80px;
+}
 }

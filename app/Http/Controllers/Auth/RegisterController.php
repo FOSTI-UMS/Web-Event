@@ -42,7 +42,7 @@ class RegisterController extends Controller
     // Untuk menghapus fungsi register
     public function showRegistrationForm()
     {
-        return redirect('login');
+        return redirect('Dont_T3llMe');
     }
 
     public function register(Request $request)

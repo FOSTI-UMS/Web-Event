@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Models\Event;
 use App\Models\Participant;
 use Illuminate\Http\Request;
+use File;
+use Alert;
 
 
 class EventController extends Controller
@@ -17,17 +19,38 @@ class EventController extends Controller
         
     public function index()
     {
-        // $events = Event::get()->count();
+        $events = Event::all();
 
         // return view('events.indexevent', ['events' => $events]);
-        return view('home');
+        return view('home', compact('events'));
     }
 
     public function create()
     {
-        return view('events.createevent');
+        $events = Event::all();
+        return view('events.createevent', compact('events'));
+    }
+    public function data($slug)
+    {
+        $data = Event::where('slug', $slug)->value('nama_event');
+        $download = Event::where('slug', $slug)->value('slug');
+        $events = Event::all()->first();
+        $participant = Participant::where('event', $data)->get();
+        return view('events.data', compact('participant','events','data','download'));
     }
 
+    public function new()
+    {
+        return view('auth.register');
+    }
+
+    public function adminevent()
+    {
+        $events = Event::orderBy('waktu','desc')->get();
+        $peserta = Participant::all()->first();
+        $date = new Carbon;
+        return view('events.adminevent', compact('events','peserta','date'));
+    }
 
     public function store(Request $request)
     {
@@ -37,8 +60,9 @@ class EventController extends Controller
             'max' => 'required',
             'tgl' => 'required',
             'tempat' => 'required',
-            'pamflet' => 'mimes:jpeg,jpg,png|required|max:2000',
-            'deskripsi' => 'required'
+            'pamflet' => 'mimes:jpeg,jpg,png|max:2000',
+            'deskripsi' => 'required',
+            'cp' => 'required'
           ]);
 
         // buat slug url
@@ -52,10 +76,15 @@ class EventController extends Controller
         // Penamaan event
         $namaEvent = $request->namaevent . ' '.  now()->year;
 
+        if ($request->file('pamflet') != null){
         // penamaan gambar
         $img = time(). '.png';
         // request gambar
         $request->file('pamflet')->storeAs('pamflet/', $img);
+        }
+        else {
+            $img = null;
+        }
 
         $waktu = Carbon::parse($request->tgl);
         // Carbon::createFromFormat('Y-m-d', $input_name); // whatever your input name is
@@ -69,18 +98,14 @@ class EventController extends Controller
             'tempat' => $request->tempat,
             'pamflet' => $img,
             'deskripsi' => $request->deskripsi,
-            'slug' => $slug
+            'htm' => $request->biaya,
+            'cp' => $request->cp,
+            'slug' => $slug,
+            'views' => 0
           ]);
 
-        return redirect('/omah/daftar')->with('message', 'Berhasil buat event');
-    }
-
-    public function daftarEvent()
-    {
-      
-      $events = Event::orderBy('waktu','desc')->paginate(5);
-
-      return view('events.daftarEvent', compact('events'));
+        Alert::success('','Event Berhasil Ditambahkan')->persistent();
+        return redirect('/omah/daftar');
     }
 
     public function show($slug)
@@ -98,23 +123,25 @@ class EventController extends Controller
     public function edit($id)
     {
         $data = Event::findOrFail($id);
+        $events = Event::orderBy('waktu','desc')->get();
 
         if(!$data) abort(404);
-  
-        return view('events.edit', compact('data'));
+        return view('events.edit', compact('events','data'));
     }
-
     
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'namaevent' => 'required',
             'max' => 'required',
-            'tgl' => 'required',
-            'pamflet' => 'mimes:jpeg,jpg,png|required|max:2000',
-            'deskripsi' => 'required'
+            'tgl' => '',
+            'pamflet' => 'mimes:jpeg,jpg,png|max:2000',
+            'deskripsi' => 'required',
+            'cp' => 'required'
           ]);
 
+        //   cek if exist
+        $update = Event::findOrFail($id);
         // buat slug url
         $slug = str_slug($request->namaevent, '-');
 
@@ -124,35 +151,57 @@ class EventController extends Controller
         }
 
         // Penamaan event
-        $namaEvent = $request->namaevent . ' '.  now()->year;
+        $namaEvent = $request->namaevent;
 
-        // penamaan gambar
-        $img = time(). '.png';
-        // request gambar
-        $request->file('pamflet')->storeAs('pamflet/', $img);
+        if ($request->tgl) {
+          // Convert date
+          $waktu = Carbon::parse($request->tgl);
+        }
+        else {
+          $waktu = Event::where('id',$id)->value('waktu');
+        }
 
-        // Convert date
-        $waktu = Carbon::parse($request->tgl);
-        
-        $create = Event::update([
+        if ($request->file('pamflet')) {
+          // penamaan gambar
+          $img = time(). '.png';
+          // request gambar
+          $request->file('pamflet')->storeAs('pamflet/', $img);
+        }
+        else {
+          $img = Event::where('id',$id)->value('pamflet');
+        }
+
+
+        $update->update([
             'nama_event' => $namaEvent,
             'max_partic' => $request->max,
             'waktu' => $waktu,
             'pamflet' => $img,
             'deskripsi' => $request->deskripsi,
+            'htm' => $request->biaya,
+            'cp' => $request->cp,
             'slug' => $slug
           ]);
-
-        return redirect('/omah/daftar')->with('message', 'Berhasil edit event');
+        Alert::success('','Event Berhasil Diedit')->persistent();
+        return redirect('omah/daftar');
     }
 
     
     public function destroy($id)
     {
         $del = Event::find($id);
+        File::delete('images/pamflet/'.$del->pamflet);
         $del->delete();
   
-        return redirect('/omah/daftar')->with('Delete_succes', 'Artikel berhasil di hapus');
+        Alert::success('','Event Berhasil Dihapus')->persistent();
+        return redirect('/omah/daftar');
+    }
+        public function hapus($id)
+    {
+        $del = Participant::findOrFail($id)->delete();
+  
+        Alert::success('','Peserta Berhasil Dihapus')->persistent();
+        return redirect()->back();
     }
 
 }

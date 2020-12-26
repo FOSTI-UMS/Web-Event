@@ -1,0 +1,1 @@
+[20-Sep-2018 04:36:53 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/fostiums/eventback/vendor/symfony/console/Output/Output.php on line 40

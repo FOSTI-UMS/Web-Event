@@ -15,24 +15,33 @@
                 padding-left:3em;
             }
         </style>
-    <title>Open Recuirement FOSTI UMS</title>
+    <title>{{$dataParti->event}}</title>
 </head>
 
 <body>
     <div class="data">
-        <strong style="padding-left:2em">Registrasi anda telah berhasil, dengan data: </strong>
+        <strong>Registrasi anda telah berhasil, dengan data: </strong>
         <br>
         <br>
         <span><strong>Nama: &nbsp; </strong>{{$dataParti->nama}}</span>
+        <span><strong>Instansi: &nbsp; </strong>{{$dataParti->nim}}</span>
         <span><strong>E-Mail: &nbsp; </strong>{{$dataParti->email}}</span>
         <span><strong>HP: &nbsp; </strong>{{$dataParti->hp}}</span>
-        <span><strong>Acara: &nbsp; </strong>{{$dataParti->event}}</span>
+        <span><strong>Acara: &nbsp; </strong>{{$dataParti->$var['event']}}</span>
         <br>
         <strong>Silahkan tunjukan pesan ini di lokasi <u>{{$dataParti->event}}</u></strong>
         <br>
         {{-- <!--<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate($qrstring))!!} ">--> --}}
-        <img src="{!!$message->embedData(QrCode::format('png')->size(200)->generate($qrstring), 'QrCode.png', 'image/png')!!}">
+        <img src="{!!$message->embedData(QrCode::format('png')->merge('/public/images/favicon.png')->size(250)->generate($qrstring), 'QrCode.png', 'image/png')!!}">
+        <form action="{{route('konfirmasi')}}">
+            <input type="hidden" name="nama" value="{{$dataParti['nama']}}">
+            <input type="hidden" name="instansi" value="{{$dataParti['nim']}}">
+            <input type="hidden" name="email" value="{{$dataParti['email']}}">
+            <input type="hidden" name="hp" value="{{$dataParti['hp']}}">
+            <input type="hidden" name="acara" value="{{$var['event']}}">
+            <input type="button" value="konfirmasi">
+        </form>
     </div>
+    <strong style="text-align:center;">Copyright © 2019  |<a href="http://fosti.ums.ac.id"> FOSTI </a>|  All rights reserved. </strong>
 </body>
-
 </html>

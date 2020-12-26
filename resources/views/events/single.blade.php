@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    <img src="/images/pamflet/{{ $data->pamflet }}" alt="">
+    <strong>Pamflet:</strong><br>
+    <img src="/images/pamflet/{{ $data->pamflet }}" alt="Pamflet" style="width:270px;height:300px;" ><br>
 
     Nama Event: {{ $data->nama_event }} <br>
     Max: {{ $data->max_partic }} <br>

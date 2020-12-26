@@ -1,19 +1,69 @@
-<!doctype html>
-<title>Full</title>
-<link rel="shortcut icon" type="image/png" href="http://fosti.ums.ac.id/img/favicon.ico"/>
-<style>
-  body { text-align: center; padding: 150px; }
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #333; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #dc8100; text-decoration: none; }
-  a:hover { color: #333; text-decoration: none; }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Selesai - Forum Open Source Teknik Informatika UMS</title>
+    <link href="/assets/plugins/material-icons/material-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/materialize.css">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+</head>
 
-<article>
-    <h1>Too late :D</h1>
-    <div>
-        <p>You just too late, bruhh :D. Find <a href="/">another event</a> :)</p>
-        <p>&mdash; Fosti</p>
+<body>
+
+    <!-- Navigation Bar -->
+	<nav class="nav-wrper fixed green darken-2" style="top: 0 !important;">
+		<div class="container">
+            <a href="/" class="brand-logo">
+                <img src="/assets/images/logo.png" width="90" style="padding-top: 5px;">
+            </a>
+            <a href="javascript:void(0)" class="sidenav-trigger" style="font-size:26px;" data-target="mysidenav">
+                &#9776;
+            </a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="/">Beranda</a></li>
+				<li><a title="Fosti" href="http://fosti.ums.ac.id/">Fosti</a></li>
+				<li><a title="Blog Fosti" href="http://fosti.ums.ac.id/blog">Blog</a></li>
+                <li><a title="Source Code" href="http://github.com/fosti">Source Code</a></li>
+			</ul>
+		</div>
+    </nav>
+        <!-- Side Bar -->
+    <div id="mysidenav" class="sidenav">
+        <ul>
+            <li><a href="/">Beranda</a></li>
+			<li><a title="Fosti" href="http://fosti.ums.ac.id/">Fosti</a></li>
+			<li><a title="Blog Fosti" href="http://fosti.ums.ac.id/blog">Blog</a></li>
+            <li><a title="Source Code" href="http://github.com/fosti">Source Code</a></li>
+        </ul>
     </div>
-</article>
+    <!-- The end of Navigation Bar -->
+
+    <div class="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 center-align" style="margin-top: 200px;">
+                <div>
+                  <h1>Too late :D</h1>
+                    <p>You just too late, bruhh :D.</p>
+                </div>
+                <div class="center-align">
+                    <a href="http://event.fostiums.org" class="btn btn-primary green">Back to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer green lighten-1" style="position: absolute; width: 100%; bottom: 0;">
+        <div class="footer-copyright green darken-3">
+            <div class="container center-align">
+                Copyright © 2019  |<a href="http://fosti.ums.ac.id"> FOSTI </a>|  All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/materialize.js"></script>
+    <script type="text/javascript" src="/assets/js/participant.js"></script>
+</body>
+</html>
